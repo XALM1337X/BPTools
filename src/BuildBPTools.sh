@@ -34,3 +34,5 @@ if [[ ! -f /etc/ld.so.conf.d/BPTools.conf ]]; then
 	ldconfig
 fi
 echo "Succesfully built BPTools.so"
+popd > /dev/null
+popd > /dev/null
