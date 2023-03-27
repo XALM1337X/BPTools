@@ -1,5 +1,5 @@
-#ifndef BPLOG_H_
-#define BPLOG_H_
+#ifndef BPLOG_H
+#define BPLOG_H
 #include <string>
 
 class BPMainLog {
