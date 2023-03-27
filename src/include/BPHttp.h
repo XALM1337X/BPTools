@@ -12,7 +12,9 @@ class BPHttpMessage {
         std::string HTTPDateFormatGet();
     
     public:
-        std::string req_line;
-        std::unordered_map<std::string, std::string> header_map;        
+        std::string msg_type;
+        std::string entity_head;
+        std::unordered_map<std::string, std::string> header_map;  
+        std::string body;      
 };
 #endif
