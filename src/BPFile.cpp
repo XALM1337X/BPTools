@@ -26,7 +26,11 @@ bool BPFile::FileReadString(std::string filePath, std::string* str) {
     } else {
         std::string line ="";
         while (std::getline(file, line)) {
-            *str+=line+"\r\n";
+            if (file.eof()) {
+                *str+=line;
+            } else {
+                *str+=line+"\r\n";
+            }
             line = "";
         }
     }
