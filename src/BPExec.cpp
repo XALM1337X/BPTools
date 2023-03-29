@@ -7,7 +7,6 @@ BPExecResult BPExec::Exec(std::string cmd, bool wait) {
     std::string result_str = "";
     int buff_size = 1024*1024;
     char buffer[buff_size];
-
     FILE* pipe = popen(cmd.c_str(),"r");  
     if (wait) {
         int fd = fileno(pipe);
