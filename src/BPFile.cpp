@@ -11,7 +11,7 @@ bool BPFile::FileReadLines(std::string filePath, std::vector<std::string>* ret) 
         return false;
     } else {
         std::string line ="";
-        while (std::getline(file, line) && !file.eof()) {
+        while (std::getline(file, line)) {
             ret->push_back(line);
             line = "";
         }
@@ -19,14 +19,16 @@ bool BPFile::FileReadLines(std::string filePath, std::vector<std::string>* ret) 
     return true;
 }
 
-bool BPFile::FileReadString(std::string filePath, std::string* file) {
-    std::ifstream fileobj(filePath);
-    std::stringstream buffer;  
-    if (fileobj.is_open()) {
-        buffer << fileobj.rdbuf();
-        *file = buffer.str();
-    } else {
+bool BPFile::FileReadString(std::string filePath, std::string* str) {
+    std::ifstream file(filePath);
+    if (!file.is_open()) {
         return false;
+    } else {
+        std::string line ="";
+        while (std::getline(file, line)) {
+            *str+=line+"\r\n";
+            line = "";
+        }
     }
     return true;
 }

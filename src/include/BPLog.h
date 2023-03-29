@@ -2,7 +2,7 @@
 #define BPLOG_H
 #include <string>
 
-class BPMainLog {
+class BPLog {
     public:
         static void WriteLog(std::string,std::string);
 };

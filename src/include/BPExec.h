@@ -14,7 +14,7 @@ class BPExecResult {
 
 class BPExec {
     public:
-        static BPExecResult Exec(std::string);
+        static BPExecResult Exec(std::string,bool);
                
 };
 
