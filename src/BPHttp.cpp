@@ -102,6 +102,31 @@ bool BPHttpMessage::SendRequest(std::string host_ip, int port, std::string msg, 
     return true;
 }
 
+std::string BPHttpMessage::BuildMessageString() {
+    std::string ret_string = "";
+    ret_string+=this->entity_head+"\r\n";
+    for (const auto& pair : this->header_map) {
+        ret_string+=pair.first+": "+pair.second+"\r\n";
+    }
+    ret_string+="\r\n";
+    ret_string+=this->body;    
+    return ret_string;
+}
+
+void BPHttpMessage::EntityHeadSet(std::string element1, std::string element2, std::string element3) {    
+    this->entity_head = element1 +" "+ element2 +" "+element3;
+}
+void BPHttpMessage::HeaderSet(std::string key, std::string val) {
+    this->header_map[key] = val;
+}
+void BPHttpMessage::BodySet(std::string str_body) {
+    this->body = str_body;
+}
+
 std::string BPHttpMessage::HTTPDateFormatGet() {
     return "";
+}
+
+void BPHttpMessage::ClearBody() {
+    this->body = "";
 }
