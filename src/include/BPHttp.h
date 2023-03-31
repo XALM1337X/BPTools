@@ -13,11 +13,14 @@ class BPHttpMessage {
         //TODO: Add method to make this system call for the date:  date -u +"%a, %d %b %Y %H:%M:%S GMT"
         std::string HTTPDateFormatGet();
         std::string ParseRequestResource(std::string);
+        static bool SendRequest(std::string, int, std::string, std::string*, std::string*);
 
-        bool BuildResponse();
-        bool ResponseEntityHeadSet();
-        bool HeaderAppend(std::string, std::string);
-        bool ClearBody();
+        std::string BuildMessageString();
+        void EntityHeadSet(std::string, std::string, std::string);
+        void HeaderSet(std::string, std::string);
+        void BodySet(std::string);
+        
+        void ClearBody();
     
     public:
         //HTTP Members
