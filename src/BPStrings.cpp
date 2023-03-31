@@ -15,7 +15,7 @@ std::vector<std::string> BPStrings::SplitString(const std::string inputString, c
 
 std::string BPStrings::EscapeStringCharacters(std::string msg) {
     std::string ret = "";
-    std::unordered_map<char, bool> sequences = {{'\'', true}, {'"', true}, {'/', true}, {'<', true}, {'>', true}, {'{', true}, {'}', true}, {'[', true}, {']', true}};
+    std::unordered_map<char, bool> sequences = {{'\'', true}, {'"', true}, {'/', true}, {'<', true}, {'>', true}, {'{', true}, {'}', true}, {'[', true}, {']', true}, {'&', true}};
     for (long unsigned int i=0; i < msg.size(); i++) {
         if (sequences[msg[i]]) {
             ret+= ("\\"+msg[i]);
