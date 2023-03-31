@@ -1,7 +1,13 @@
 #include "BPHttp.h"
 #include "BPStrings.h"
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <netdb.h>
 #include <regex>
 #include <iostream>
+#include <unistd.h>
 
 BPHttpMessage::BPHttpMessage() {
     this->msg_type = "";
