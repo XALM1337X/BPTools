@@ -34,11 +34,9 @@ bool BPHttpMessage::Parse(std::vector<std::string> lines) {
 
     for (std::vector<std::string>::iterator it = lines.begin(); it != lines.end(); it++) {
         if (std::regex_match(*it, match, regex_req)) {
-            this->msg_type = "request";
             this->entity_head = *it;
             ent_head_flag = true;
         } else if (std::regex_match(*it, match, regex_resp )) {
-            this->msg_type = "response";
             this->entity_head = *it;
         } else if (std::regex_match(*it, match, regex_header)) {
             this->header_map[match[1]] = match[2];
@@ -52,7 +50,6 @@ bool BPHttpMessage::Parse(std::vector<std::string> lines) {
     if (ent_head_flag && head_flag) {
         return true;
     }
-    this->msg_type = "";
     this->entity_head = "";
     this->body = "";
     this->header_map.clear();
@@ -69,8 +66,8 @@ std::string BPHttpMessage::ParseRequestResource(std::string ent_head) {
 
 bool BPHttpMessage::SendRequest(std::string host_ip, int port, std::string msg, std::string* out_data, std::string* err_out) {
     
-    sockaddr_in serverAddress;
-    int clientSocket = socket(AF_INET, SOCK_STREAM, 0);    
+    sockaddr_in serverAddress;   
+    int clientSocket = socket(AF_INET, SOCK_STREAM, 0);   
     if (clientSocket < 0) {
         *err_out = "Failed to create client socket";
         return false;
@@ -116,8 +113,8 @@ bool BPHttpMessage::SendRequest(std::string host_ip, int port, std::string msg, 
             buffer = (char*)realloc(buffer, buffer_size);
             if (buffer == NULL) {
                 *err_out = "Failed to allocate memory for response buffer";
-        return false;
-    }
+                return false;
+            }
             *out_data += std::string(buffer);
             std::cout << buffer << std::endl;
         }
