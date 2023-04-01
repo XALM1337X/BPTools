@@ -1,5 +1,6 @@
 #include "BPHttp.h"
 #include "BPStrings.h"
+#include "BPExec.h"
 #include <sys/socket.h>
 #include <arpa/inet.h>
 #include <stdio.h>
@@ -8,9 +9,9 @@
 #include <regex>
 #include <iostream>
 #include <unistd.h>
+#include <fcntl.h>
 
 BPHttpMessage::BPHttpMessage() {
-    this->msg_type = "";
     this->entity_head = "";
     this->body = "";
     this->header_map = {};
