@@ -150,8 +150,13 @@ void BPHttpMessage::BodySet(std::string str_body) {
     this->body = str_body;
 }
 
-std::string BPHttpMessage::HTTPDateFormatGet() {
-    return "";
+void BPHttpMessage::GenerateDate(std::string* out_data, std::string* out_error) {
+    BPExecResult ex = BPExec::Exec("date -u +\"%a, %d %b %Y %H:%M:%S GMT\"", true);
+    if (ex.exit_code != 0) {
+        *out_error = "Failed to execute date command.";        
+    } else {
+        *out_data = (ex.result).erase(ex.result.size()-1);
+    }
 }
 
 void BPHttpMessage::ClearBody() {
