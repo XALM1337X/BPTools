@@ -15,7 +15,7 @@ BPExecResult BPExec::Exec(std::string cmd, bool wait) {
     }
     if (!pipe) {
         ret.exit_code = 1;
-        ret.err_str = "BPTools:BPExec:error - Failed to open execution pipe.";
+        ret.err_str = "BPTools:BPExec:error - Failed to open execution pipe: "+cmd;
     } else {
         while (!feof(pipe)) {
             if (fgets(buffer, buff_size, pipe) != NULL){
